@@ -1,0 +1,30 @@
+(A) 2026-10-09 Bind clef to LAN or kill WAN forward +fleet id:#60 blocked:operator-action
+(B) 2026-10-09 reconcile ex-helpdesk item +fleet id:#61 blocked:spec-missing
+(B) 2026-10-09 reconcile ex-helpdesk item +fleet id:#62 blocked:spec-missing
+(B) 2026-10-09 bookkeeping: close out landed attribution fix, code already on prod +fleet id:#63
+(B) 2026-10-09 Resolve D-06 assignee lookup via sanctioned API +fleet id:#22 owner:builder-agent
+(B) 2026-10-09 Fix D-08 gate to reach steps 3-6 +fleet id:#21 owner:builder-agent
+(B) 2026-10-09 Merge human-account guard fix @155ed78 +fleet id:#23 owner:builder-agent
+(B) 2026-10-09 Quote helpdesk_ticket.sh ARGS to keep payload +fleet id:#57
+(B) 2026-10-09 Land docs/blueprint-delta BLUEPRINT.md on trunk +fleet id:#32 owner:pm-agent
+(B) 2026-10-09 Land fix/galaxy-roles-on-trunk (D-01) +fleet id:#16 owner:builder-agent
+(B) 2026-10-09 Drop hardcoded private key path Makefile:146 +fleet id:#51 owner:builder-agent
+(B) 2026-10-09 Migrate fleet credentials to openbao (EPIC) +fleet id:#55
+(B) 2026-10-09 Add secret write-back for rotation (dup #55) +fleet id:#11 owner:builder-agent
+(C) 2026-10-09 Restore AWX reachability from trunk host +fleet id:#25 owner:builder-agent blocked:d701-deploy-credential
+(C) 2026-10-09 Fix AWX distribute-fleet-key red since 09-13 +fleet id:#24 owner:builder-agent blocked:#25-then-#55
+(C) 2026-10-09 Reconcile AWX inventory 13 hosts vs repo 12 +fleet id:#26 owner:builder-agent blocked:operator-inventory-authority
+(C) 2026-10-09 Prune branch/worktree sprawl (D-02) +fleet id:#17 owner:builder-agent blocked:#21-gate-first
+(C) 2026-10-09 Dispose wip/m0-lab-kuma-mcp-UNVERIFIED branch +fleet id:#40 owner:builder-agent blocked:operator-keep-or-discard
+(C) 2026-10-09 Dispose update-202608200920 branch +fleet id:#42 owner:builder-agent blocked:operator-keep-or-discard
+(B) 2026-10-09 Merge fix/sudo-restrict-48 on d701 +fleet id:#48 owner:builder-agent
+(B) 2026-10-09 Roll out machine committer, re-point history +fleet id:#36 owner:pm-agent
+(B) 2026-10-09 Fail loudly on interrupted worker +fleet id:#47 owner:pm-agent
+(B) 2026-10-09 Regenerate todo.md Now block (D-03) +fleet id:#18 owner:pm-agent
+(B) 2026-10-09 Make gate runnable inside a worker +fleet id:#13 owner:pm-agent
+(B) 2026-10-09 Add Hash::check verify legs to password store +fleet id:#10 owner:builder-agent
+(B) 2026-10-09 Fix uptime-kuma container MISSING on d701 +fleet id:#52 owner:builder-agent
+(B) 2026-10-09 chmod 0600 awx password on dundore-sager +fleet id:#54 owner:builder-agent
+(C) 2026-10-09 Fix kuma password 0644 + api_key symlink +fleet id:#53 owner:builder-agent blocked:operator-rotation-signoff
+(B) 2026-10-09 Verify Mail SLO after mailcow cutover +fleet id:#14 owner:auditor-agent
+(B) 2026-10-09 Close /etc/dundore-git, premise false +fleet id:#12 owner:builder-agent

@@ -1,5 +1,5 @@
-(B) 2026-10-09 reconcile ex-helpdesk item +fleet id:#61 blocked:spec-missing
-(B) 2026-10-09 reconcile ex-helpdesk item +fleet id:#62 blocked:spec-missing
+(B) 2026-10-09 EPIC: 2026-10-08 triage sequence - legs fleet #21 #48 #51 #53 #54 #55 #24 #57 #58 #59 +fleet id:#61 (EPIC)
+(B) 2026-10-09 Wire clef as a pre-execution gate: hook POSTs candidate exec action to dev:8888/v1/systemone and blocks on DENY +fleet id:#62 owner:pm-agent
 (B) 2026-10-09 bookkeeping: close out landed attribution fix, code already on prod +fleet id:#63
 (B) 2026-10-09 Resolve D-06 assignee lookup via sanctioned API +fleet id:#22 owner:builder-agent
 (B) 2026-10-09 Fix D-08 gate to reach steps 3-6 +fleet id:#21 owner:builder-agent
@@ -28,3 +28,8 @@
 (B) 2026-10-09 Verify Mail SLO after mailcow cutover +fleet id:#14 owner:auditor-agent
 (B) 2026-10-09 Close /etc/dundore-git, premise false +fleet id:#12 owner:builder-agent
 (B) 2026-10-09 clef 8888 exposure - premise changed - reachable from d701 by LAN (dev.dundore.net=10.200.10.15 via eno2) and by tailnet (dev.taila9ae11.ts.net=100.90.230.113); operator ruled KEEP the tailscale forward - it is our link to clef; residual scope confirm no public listener and record the bind +fleet id:#60 owner:pm-agent verified:lan-route-and-tailnet
+Push 24 local refs/rescue pins - only remaining leg of fleet #59 +fleet id:#59 owner:pm-agent blocked:operator-credential
+Supply repo slug + Actions run URL for fleet #58 or close it +fleet id:#58 owner:pm-agent blocked:spec-missing
+pre-commit secret-scan hook truncates the tree on any pathspec commit owner:pm-agent
+migration defect: epic fleet#61 imported as a leaf; imported lines must name a leaf or be expanded +fleet id:#61 owner:pm-agent
+false provenance: FreeScout has no priority column, so every B/C grade on a migrated line was assigned by us owner:pm-agent

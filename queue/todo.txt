@@ -11,7 +11,7 @@
 (B) 2026-10-09 Migrate fleet credentials to openbao (EPIC) +fleet id:#55
 (B) 2026-10-09 Add secret write-back for rotation (dup #55) +fleet id:#11 owner:builder-agent
 (C) 2026-10-09 Restore AWX reachability from trunk host +fleet id:#25 owner:builder-agent blocked:d701-deploy-credential
-(C) 2026-10-09 Fix AWX distribute-fleet-key red since 09-13 +fleet id:#24 owner:builder-agent blocked:#25-then-#55
+(C) 2026-10-09 Fix AWX distribute-fleet-key red since 09-13 +fleet id:#24 owner:builder-agent blocked:#25-then-#55 stale:source-closed-20261008
 (C) 2026-10-09 Reconcile AWX inventory 13 hosts vs repo 12 +fleet id:#26 owner:builder-agent blocked:operator-inventory-authority
 (C) 2026-10-09 Prune branch/worktree sprawl (D-02) +fleet id:#17 owner:builder-agent blocked:#21-gate-first
 (C) 2026-10-09 Dispose wip/m0-lab-kuma-mcp-UNVERIFIED branch +fleet id:#40 owner:builder-agent blocked:operator-keep-or-discard
@@ -28,10 +28,10 @@
 (B) 2026-10-09 Verify Mail SLO after mailcow cutover +fleet id:#14 owner:auditor-agent
 (B) 2026-10-09 Close /etc/dundore-git, premise false +fleet id:#12 owner:builder-agent
 (B) 2026-10-09 clef 8888 exposure - premise changed - reachable from d701 by LAN (dev.dundore.net=10.200.10.15 via eno2) and by tailnet (dev.taila9ae11.ts.net=100.90.230.113); operator ruled KEEP the tailscale forward - it is our link to clef; residual scope confirm no public listener and record the bind +fleet id:#60 owner:pm-agent verified:lan-route-and-tailnet
-Push 24 local refs/rescue pins - only remaining leg of fleet #59 +fleet id:#59 owner:pm-agent blocked:operator-credential
-Supply repo slug + Actions run URL for fleet #58 or close it +fleet id:#58 owner:pm-agent blocked:spec-missing
+verify or reopen fleet #59 rescue-ref push leg - source ticket CLOSED 2026-10-08 14:11:15 +fleet id:#59 owner:pm-agent blocked:reopen-decision
+verify or reopen fleet #58 Github Errors - source ticket CLOSED 2026-10-08 14:11:22 +fleet id:#58 owner:pm-agent blocked:reopen-decision
 ~/.pm pre-commit hook truncates tree on pathspec commit (54383df, 1 of 195, published); no installer found, hook absent in ahab-config owner:pm-agent
-migration defect: epic fleet#61 imported as a leaf; imported lines must name a leaf or be expanded +fleet id:#61 owner:pm-agent
+migration defect: imported lines must match source ticket STATE and leaf-vs-epic - 58/59/24 kept open against CLOSED sources owner:pm-agent
 false provenance: FreeScout has no priority column, so every B/C grade on a migrated line was assigned by us owner:pm-agent
-fleet #24 is cited by a queue line but is not open in FreeScout - confirm already done or re-point +fleet id:#24 owner:pm-agent blocked:needs-info
+fleet #24 cited by task 14 but CLOSED 2026-10-08 14:11:09 status=3 - confirm done or reopen +fleet id:#24 owner:pm-agent blocked:reopen-decision
 migration gap: 13 pending FreeScout tickets were never migrated, the queue covers open ids only owner:pm-agent

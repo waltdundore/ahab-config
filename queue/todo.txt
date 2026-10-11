@@ -39,3 +39,4 @@ KUMA credential: 9 identity x secret combos give authIncorrectCreds, OpenBao is 
 jenkins dev login unprobed: prod proven 200 as jenkins-admin, dev probe used the wrong username owner:pm-agent
 fleet identity ruling open: ansible needs -e ansible_ssh_private_key_file=~/.ssh/ansible_user because keys/service_id is absent; A-lineage fix a0d14ab deliberately NOT ported to dev owner:pm-agent blocked:identity-ruling
 inventory debt: tailnet IPs hardcoded in inventory/host_vars/{d701,dundore-sager}.yml while NetBox is the inventory SSoT owner:pm-agent
+CI gate: ansible-lint + per-playbook --syntax-check (+ yamllint) must become a blocking workflow check on push to the repo owner:pm-agent note:ci-law

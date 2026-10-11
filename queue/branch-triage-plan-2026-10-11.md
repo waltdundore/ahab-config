@@ -1,0 +1,78 @@
+# Branch / worktree landing plan — dundore-homelab (2026-10-11)
+
+Owner: PM lead. Status: Phase 0–2b complete (read-only). Phases 3–6 await execution.
+Operator approved this plan verbatim on 2026-10-11 ("I agree with the plan you recommend").
+
+## Measured basis (do not re-derive)
+- `git fetch --prune origin` run with authorization; classification re-run against fresh `origin/dev`.
+- 36 local branches, 27 linked worktrees. Main clone `/home/wdundore/git/dundore-homelab` is on
+  `fix/tailnet-transport-identity` with one pending change (` M Vagrantfile`) that is NOT ours.
+- Buckets: MERGED 3 · DUPLICATE (patch-id) 0 · SUPERSEDED (content test) 0 · ALIVE 33.
+  Excluding the `prod` trunk, the cleanup universe is **32 feature/fix branches**.
+- Artifacts: `/tmp/archive-20261011.bundle` (complete history, all branches+tags, `bundle verify` OK),
+  `/tmp/wt-triage2-20261011.md` (36 rows: ahead/dup/uniq/class/last/author/worktree),
+  `/tmp/wt-supersede-20261011.md` (33 SUPERSEDED|ALIVE verdicts with ± and touched paths).
+  /tmp is volatile — re-create the bundle before any destructive step.
+- 19 of 36 branches are foreign-authored (`ahab-d701-builder`, `ahab-pm`, `pm-b`, …).
+- `/tmp` is wiped between sessions; the bundle is the only rollback besides archive tags.
+
+## Conclusion that governs everything below
+Nothing here is stale clutter. Pruning would destroy real work. The mess is 32 branches of
+unlanded work; the correct cleanup is **land or explicitly shelve**, never silent delete.
+
+## Phase 3 — reap only what is provably merged  (2 items, low risk)
+1. `git -C /home/wdundore/git/dundore-homelab bundle create /tmp/archive-pre-reap-$(date +%F).bundle --branches --tags`
+2. Tag, then remove: `git tag archive/jenkins-union-20261011 jenkins-union-20261011` (same for `jenkins-on-dev`),
+   `git worktree remove /home/wdundore/git/wt-jenkins-union`, `git branch -D jenkins-union-20261011 jenkins-on-dev`,
+   `git worktree prune`.
+   Leave `production` alone: merged but foreign-authored.
+Rollback: `git worktree add … archive/<name>` or reset the branch from the bundle.
+
+## Phase 4 — collapse the topic pairs first (where duplicate effort actually lives)
+One landing per cluster, not one per branch. Verify each pair by content, then land the better one
+and record the other as superseded-by-<sha>.
+- `fix/human-account-guard` + `fix/human-account-guard-v2`
+- `fix/galaxy-role-resolution` + `fix/galaxy-roles-on-trunk`
+- `fix/awx-agent-access-25` + `fix/awx-fleet-push`
+- `docs/blueprint-delta`, `docs/coldstart-bootstrap`, `docs/nas-decoy-d02`, `docs/pre-refactor-audit`,
+  `docs-l0-20261008`, `docs-ssot-align-20261001` → one docs-convergence landing
+- `fix/helpdesk-443` + `fix/helpdesk-note-attribution-63` + `feat/helpdesk-queue` + `spike/helpdesk-untracked`
+- identity cluster: `fix/git-identity-12` + `fix/makefile-ssh-identity-51` + `fix/tailnet-transport-identity`
+  — blocked on the fleet identity ruling, see Open items.
+
+## Phase 5 — land the rest, one cluster per session, gate-gated
+For each cluster: rebase onto `origin/dev` → `make gate` (all five steps) → merge to `dev` → push →
+`docs/audits/` row naming the branch, the ticket, the gate result, and the reviewer.
+- Ticket-numbered branches map to fleet helpdesk tickets (`-59`, `-63`, `-25`, `-51`, `-12`, `-48`, `-57`);
+  cross-check the ticket state in `~/git/ahab-config/queue/todo.txt` before landing — several may be closed.
+- Known land-blocker: `make gate` step 4/5 cannot run locally (`ansible-lint` crash,
+  "Python 3.14 requires ansible-core >= 2.20.0, found 2.18.18rc1"). Until fixed, treat lint as NOT RUN
+  and say so in the audit row. `local.yml --syntax-check` also fails on missing role `chrony`
+  (`roles/base/meta/main.yml:19`).
+- Do not merge `prod` into `dev` or vice versa unilaterally; trunks are reconciled by operator decision.
+
+## Phase 6 — shelve explicitly, so the next session stops re-triaging
+Branches whose work is deliberately parked (`shelve/student-safety-law-20260819`, `spike/helpdesk-untracked`,
+`reconcile/2026-10-03`, `feature/student-safety-law`, `feature/sre-vagrant-baseline`, `idp-b1-catalog`) get one
+line each in this file: parked / reason / revisit-when. Keep the branch; remove the worktree only if the
+operator names it.
+
+## Standing guardrails
+- Never delete a foreign-authored branch. Archive tag + report line only.
+- Never stash, revert, checkout, or clean a dirty tree. The main clone's `Vagrantfile` carries someone
+  else's pending hunks (`vm_name` removals, Fedora-43 `box_url` pin) plus our `synced_folder` line 11 —
+  commit ruling still pending with the operator.
+- Fresh bundle before every destructive phase; archive tag before every branch removal.
+- `origin/dev` freshness: fetch is authorized for this repo; re-fetch before each landing session.
+- Push transport is persisted repo-local (`core.sshCommand` = `~/.ssh/id_ed25519_automation`) on
+  `dundore-homelab`; `~/.pm` uses `pm-github`. `ahab`/`ahab-config` deploy keys are READ-ONLY,
+  `dundore-dnscontrol`/`scripts` reject both keys — do not attempt pushes there.
+
+## Open items this plan depends on
+1. Fleet SSH identity ruling (`keys/service_id` absent ⇒ `-e ansible_ssh_private_key_file=$HOME/.ssh/ansible_user`
+   on every run; `a0d14ab` deliberately NOT ported to `dev`).
+2. `Vagrantfile` commit ruling (mixed authorship in one file).
+3. Write keys for `ahab-config` (queue commits `2b2a6b7`, `9d06f47`, `c0cbeaf` are local-only) and `ahab`.
+4. Gate 4/5 environment fix (ansible-lint vs ansible-core) and the missing `chrony` role.
+5. Make the gate a *required* push check (`.github/workflows/ci.yml` exists and triggers on push to
+   `prod`/`dev`, but enforcement is unproven and CI omits `transport-check`).

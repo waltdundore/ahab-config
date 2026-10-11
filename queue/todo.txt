@@ -35,3 +35,7 @@ migration defect: imported lines must match source ticket STATE and leaf-vs-epic
 false provenance: FreeScout has no priority column, so every B/C grade on a migrated line was assigned by us owner:pm-agent
 fleet #24 cited by task 14 but CLOSED 2026-10-08 14:11:09 status=3 - confirm done or reopen +fleet id:#24 owner:pm-agent blocked:reopen-decision
 migration gap: 13 pending FreeScout tickets were never migrated, the queue covers open ids only owner:pm-agent
+KUMA credential: 9 identity x secret combos give authIncorrectCreds, OpenBao is a sealed standby - jenkins-dev/jenkins-prod monitors are declared and reachable but NOT registered; need operator to repair /nas/secrets/uptime-kuma/password or authorise a roles/uptime-kuma reset owner:pm-agent blocked:kuma-credential
+jenkins dev login unprobed: prod proven 200 as jenkins-admin, dev probe used the wrong username owner:pm-agent
+fleet identity ruling open: ansible needs -e ansible_ssh_private_key_file=~/.ssh/ansible_user because keys/service_id is absent; A-lineage fix a0d14ab deliberately NOT ported to dev owner:pm-agent blocked:identity-ruling
+inventory debt: tailnet IPs hardcoded in inventory/host_vars/{d701,dundore-sager}.yml while NetBox is the inventory SSoT owner:pm-agent

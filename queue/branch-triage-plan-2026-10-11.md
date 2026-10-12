@@ -84,3 +84,12 @@ operator names it.
 4. Gate 4/5 environment fix (ansible-lint vs ansible-core) and the missing `chrony` role.
 5. Make the gate a *required* push check (`.github/workflows/ci.yml` exists and triggers on push to
    `prod`/`dev`, but enforcement is unproven and CI omits `transport-check`).
+
+## Phase 3 executed — 2026-10-12 (reap)
+
+- bundle: /tmp/archive-pre-reap-2026-10-11.bundle, 2,001,349 bytes, `git bundle verify` exit 0 ("is okay", 40 refs); /tmp is volatile — the tags below are the real rollback.
+- rollback tags: archive/jenkins-union-20261011 -> c1526c7, archive/jenkins-on-dev -> 1f01491; restore with `git branch <name> archive/<name>` then `git worktree add`.
+- deleted branches: jenkins-union-20261011 (tip c1526c7, identical to origin/dev) and jenkins-on-dev (tip 1f01491, proven contained in origin/dev by `merge-base --is-ancestor` exit 0).
+- removed worktrees: /home/wdundore/git/wt-jenkins-union (clean) and /home/wdundore/git/homelab-jenkins-dev (clean). DEVIATION: the second worktree is not named in the plan; its removal was required because jenkins-on-dev was checked out there, so the plan's `git branch -D` could not otherwise run. Both removals were gated on `merge-base --is-ancestor ... origin/dev` exit 0 AND a zero-line `status --porcelain`.
+- post-state: 34 local branches (was 36), 25 worktree entries (was 27), zero jenkins branches or worktrees, origin/dev still c1526c7, origin/prod still 0333656. `production` untouched (foreign-authored).
+- independent audit verdict: PASS on the reap; expected-vs-actual delta empty on 7 of 8 checks. The 8th check flagged that the main checkout's uncommitted `M Vagrantfile` had become commit 37613b8 "test" (author and committer ahab-d701-builder, 2026-10-12T00:26:06Z) on branch fix/tailnet-transport-identity, 4m17s AFTER the reap's last log write (00:21:49Z) — i.e. third-party work, not a reap side effect. Content: D-79 synced_folder/rsync transport block, fed.vm.box_url amd64 pin, removal of two lib.vm_name lines. Left untouched; still pending the operator's Vagrantfile ruling.

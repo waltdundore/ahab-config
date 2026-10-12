@@ -16,6 +16,14 @@ Operator approved this plan verbatim on 2026-10-11 ("I agree with the plan you r
 - 19 of 36 branches are foreign-authored (`ahab-d701-builder`, `ahab-pm`, `pm-b`, …).
 - `/tmp` is wiped between sessions; the bundle is the only rollback besides archive tags.
 
+## Important qualifier found while closing out Phase 2b
+Several branch tips are titled `wip(capture): preserve uncommitted work ahead of cleanup - unreviewed`
+(e.g. `idp-b1-catalog`, `fix/helpdesk-443`, `feat/fleet-secret-parity-59`) — another session snapshotted dirty
+work into branches rather than finishing it. Treat those as **unreviewed captures**: they must be read and
+reviewed before any landing, never rebased-and-merged on the strength of being ALIVE. A supplementary
+check (`/tmp/wt-branchnewfiles-20261011.md`) lists, per branch, the files it adds and how many of those are
+absent from the trunk tree — most are absent, confirming the work is genuinely unlanded rather than renamed.
+
 ## Conclusion that governs everything below
 Nothing here is stale clutter. Pruning would destroy real work. The mess is 32 branches of
 unlanded work; the correct cleanup is **land or explicitly shelve**, never silent delete.

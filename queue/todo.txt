@@ -58,3 +58,6 @@ Vagrantfile fix UNCOMMITTED: dundore-homelab Vagrantfile:11 adds synced_folder t
 (B) 2026-10-13 triage unmerged branch wip/m0-lab-kuma-mcp-UNVERIFIED - keep or discard decision branch:wip/m0-lab-kuma-mcp-UNVERIFIED uniq:1 status:unmerged src:p12
 (B) 2026-10-13 apply git_identity playbook to hosts and record per-host evidence splitfrom:fleet#36 status:open
 (B) 2026-10-13 re-point git history to machine committer splitfrom:fleet#36 status:open
+(B) 2026-10-13 Authentik login unreachable by name and no operator account exists project:idp repo:dundore-homelab host:prod login_url:http://10.200.10.10:9000/if/flow/default-authentication-flow/ symptom:prod.dundore.net_returns_404 dns_a:10.200.10.15 status:no_superuser_created needs:operator_decision src:p6-followup
+(B) 2026-10-13 Stale doc claims Authentik was never deployed project:docs repo:dundore-homelab loc:docs-REFERENCE.md_line-133 evidence:live_stack_on_prod_port_9000 src:p6-followup
+(B) 2026-10-13 Three local-only commits on dundore-homelab prod await push approval project:release repo:dundore-homelab commits:a71afc3+dff823b+735aad4 gate:secret-gate_audited_PASS needs:operator_push_approval src:p6-followup

@@ -26,21 +26,21 @@
 (B) 2026-10-09 Verify Mail SLO after mailcow cutover +fleet id:#14 owner:auditor-agent
 (B) 2026-10-09 Close /etc/dundore-git, premise false +fleet id:#12 owner:builder-agent
 (B) 2026-10-09 clef 8888 exposure - premise changed - reachable from d701 by LAN (dev.dundore.net=10.200.10.15 via eno2) and by tailnet (dev.taila9ae11.ts.net=100.90.230.113); operator ruled KEEP the tailscale forward - it is our link to clef; residual scope confirm no public listener and record the bind +fleet id:#60 owner:pm-agent verified:lan-route-and-tailnet
-verify or reopen fleet #59 rescue-ref push leg - source ticket CLOSED 2026-10-08 14:11:15 +fleet id:#59 owner:pm-agent blocked:reopen-decision
-verify or reopen fleet #58 Github Errors - source ticket CLOSED 2026-10-08 14:11:22 +fleet id:#58 owner:pm-agent blocked:reopen-decision
+(C) verify or reopen fleet #59 rescue-ref push leg - source ticket CLOSED 2026-10-08 14:11:15 +fleet id:#59 owner:pm-agent blocked:reopen-decision
+(C) verify or reopen fleet #58 Github Errors - source ticket CLOSED 2026-10-08 14:11:22 +fleet id:#58 owner:pm-agent blocked:reopen-decision
 ~/.pm pre-commit hook truncates tree on pathspec commit (54383df, 1 of 195, published); no installer found, hook absent in ahab-config owner:pm-agent
 migration defect: imported lines must match source ticket STATE and leaf-vs-epic - 58/59/24 kept open against CLOSED sources owner:pm-agent
 false provenance: FreeScout has no priority column, so every B/C grade on a migrated line was assigned by us owner:pm-agent
-fleet #24 cited by task 14 but CLOSED 2026-10-08 14:11:09 status=3 - confirm done or reopen +fleet id:#24 owner:pm-agent blocked:reopen-decision
+(C) fleet #24 cited by task 14 but CLOSED 2026-10-08 14:11:09 status=3 - confirm done or reopen +fleet id:#24 owner:pm-agent blocked:reopen-decision
 migration gap: 13 pending FreeScout tickets were never migrated, the queue covers open ids only owner:pm-agent
-KUMA credential: 9 identity x secret combos give authIncorrectCreds, OpenBao is a sealed standby - jenkins-dev/jenkins-prod monitors are declared and reachable but NOT registered; need operator to repair /nas/secrets/uptime-kuma/password or authorise a roles/uptime-kuma reset owner:pm-agent blocked:kuma-credential
+(C) KUMA credential: 9 identity x secret combos give authIncorrectCreds, OpenBao is a sealed standby - jenkins-dev/jenkins-prod monitors are declared and reachable but NOT registered; need operator to repair /nas/secrets/uptime-kuma/password or authorise a roles/uptime-kuma reset owner:pm-agent blocked:kuma-credential
 jenkins dev login unprobed: prod proven 200 as jenkins-admin, dev probe used the wrong username owner:pm-agent
-fleet identity ruling open: ansible needs -e ansible_ssh_private_key_file=~/.ssh/ansible_user because keys/service_id is absent; A-lineage fix a0d14ab deliberately NOT ported to dev owner:pm-agent blocked:identity-ruling
+(C) fleet identity ruling open: ansible needs -e ansible_ssh_private_key_file=~/.ssh/ansible_user because keys/service_id is absent; A-lineage fix a0d14ab deliberately NOT ported to dev owner:pm-agent blocked:identity-ruling
 inventory debt: tailnet IPs hardcoded in inventory/host_vars/{d701,dundore-sager}.yml while NetBox is the inventory SSoT owner:pm-agent
 CI gate: ansible-lint + per-playbook --syntax-check (+ yamllint) must become a blocking workflow check on push to the repo owner:pm-agent note:ci-law
 gate 4/5 is dead locally: ansible-lint crashes with "Python 3.14 requires ansible-core >= 2.20.0, found 2.18.18rc1", so make gate can never report lint results owner:pm-agent
 local.yml --syntax-check fails: role 'chrony' not found (declared in roles/base/meta/main.yml:19) - vendor the role or drop the dependency owner:pm-agent
-Vagrantfile fix UNCOMMITTED: dundore-homelab Vagrantfile:11 adds synced_folder type rsync (transport-check now clean) but the file also carries pending hunks not mine (drop vm_name dundore-deb13/dundore-fed43, add fed box_url pin) - commit ruling needed owner:pm-agent blocked:commit-ruling
+(C) Vagrantfile fix UNCOMMITTED: dundore-homelab Vagrantfile:11 adds synced_folder type rsync (transport-check now clean) but the file also carries pending hunks not mine (drop vm_name dundore-deb13/dundore-fed43, add fed box_url pin) - commit ruling needed owner:pm-agent blocked:commit-ruling
 (B) 2026-10-13 triage unmerged branch fix/tailnet-transport-identity - keep or discard decision branch:fix/tailnet-transport-identity uniq:21 status:unmerged src:p12
 (B) 2026-10-13 triage unmerged branch docs/blueprint-delta - keep or discard decision branch:docs/blueprint-delta uniq:14 status:unmerged src:p12
 (B) 2026-10-13 triage unmerged branch fix/human-account-guard - keep or discard decision branch:fix/human-account-guard uniq:6 status:unmerged src:p12
